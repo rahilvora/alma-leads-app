@@ -13,7 +13,7 @@ app/
 │   ├── form/         # Form specific components
 │   ├── shared/       # Reusable shared components
 │   └── home/         # Home page components
-├── data/            # Data layer
+├── data/            # Data layer (Mock Data, data type and queries
 └── dashboard/       # Dashboard pages
 ```
 
