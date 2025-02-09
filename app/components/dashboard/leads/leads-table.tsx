@@ -1,6 +1,7 @@
 import { fetchFilteredLeads } from "@/app/data/leads-queries"
 import { Lead } from "@/app/data/data-defination";
 import { epochToDateTime } from "@/app/utils/date-time-util";
+import Button from "@/app/components/shared/button";
 export default async function LeadsTable({
   query, currentPage,
 }: {
@@ -34,9 +35,9 @@ export default async function LeadsTable({
                 </div>
                 <div className="flex items-center justify-end">
                   {lead.status === "pending" ? (
-                    <button className="rounded-md bg-green-500 px-4 py-2 text-white">
+                    <Button variant="primary" size="sm">
                       Reach Out
-                    </button>
+                    </Button>
                   ) : (
                     <span className="rounded-md bg-gray-100 px-4 py-2 text-gray-500">
                       No Action
@@ -86,9 +87,9 @@ export default async function LeadsTable({
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                     {lead.status === "pending" ? (
-                      <button className="rounded-md bg-green-500 px-4 py-2 text-white">
+                      <Button variant="primary" size="sm">
                         Reach Out
-                      </button>
+                      </Button>
                     ) : (
                       <span className="rounded-md bg-gray-100 px-4 py-2 text-gray-500">
                         No Action

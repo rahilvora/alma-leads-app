@@ -1,18 +1,24 @@
-import Image from "next/image";
 import Link from "next/link";
 import Button from "@/app/components/shared/button";
-
+import HeroSection from "@/app/components/shared/HeroSection";
 export default function Page() {
   return (
-    <main className="flex min-h-screen flex-col p-24">
-      <div className="flex h-20 shrink-0 items-center justify-center rounded-lg bg-green-500 sm:h-32 md:h-52 lg:h-64">
+    <main>
+      <HeroSection>
         <h1 className="text-white">Welcome to Alma</h1>
+      </HeroSection>
+      <div className="mt-8 flex items-center justify-center">
+        <Link className="mx-auto" href="/dashboard/leads">
+          <Button>
+            <h1>Lead Dashboard</h1>
+          </Button>
+        </Link>
+        <Link className="mx-auto" href="/form">
+          <Button>
+            <h1>Get an Assessment</h1>
+          </Button>
+        </Link>
       </div>
-      <Link href="/dashboard">
-        <Button>
-          <h1>Lead Dashboard</h1>
-        </Button>
-      </Link>
     </main>
   );
 }
