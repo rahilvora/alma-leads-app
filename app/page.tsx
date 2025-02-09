@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Button from "@/app/components/shared/button";
-import HeroSection from "@/app/components/shared/HeroSection";
+import HeroSection from "@/app/components/shared/hero-section";
 export default function Page() {
   return (
     <main>

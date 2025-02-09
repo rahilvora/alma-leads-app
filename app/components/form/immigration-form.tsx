@@ -1,7 +1,7 @@
 'use client';  // Add client directive since we're using form state
 
 import { useState, FormEvent } from 'react';
-import HeroSection from "@/app/components/shared/HeroSection";
+import HeroSection from "@/app/components/shared/hero-section";
 import AlmaLogo from "@/app/components/shared/alma-logo";
 import {
   DocumentTextIcon,
