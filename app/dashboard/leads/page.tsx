@@ -3,6 +3,7 @@ import LeadsTable from '@/app/components/dashboard/leads/leads-table';
 import StatusFilterButton from '@/app/components/dashboard/leads/status-filter-button';
 import { Suspense } from 'react';
 import { fetchLeadsPages } from '@/app/data/leads-queries';
+import Pagination from '@/app/components/dashboard/leads/Pagination';
 export default async function Page(props: {
   searchParams?: Promise<{
     query?: string;
@@ -25,6 +26,9 @@ export default async function Page(props: {
       <Suspense key={query + currentPage}>
         <LeadsTable query={query} currentPage={currentPage} />
       </Suspense>
+      <div className="mt-4 flex items-right justify-center gap-2 md:mt-8">
+        <Pagination totalPages={totalPages} />
+      </div>
     </div >
   );
 }
