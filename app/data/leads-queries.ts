@@ -30,7 +30,6 @@ function filterLeadsByQuery(leads: Lead[], query: string): Lead[] {
 export async function fetchFilteredLeads(query: string, currentPage: number): Promise<Lead[]> {
   // Simulate API delay
   await new Promise(resolve => setTimeout(resolve, 500));
-
   /**
    * Currently, we only filter by name but we can extend this to filter by other fields
    */
