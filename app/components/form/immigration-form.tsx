@@ -7,7 +7,8 @@ import {
   DocumentTextIcon,
   GlobeAmericasIcon,
   ChevronDownIcon,
-  HeartIcon
+  HeartIcon,
+  PaperClipIcon
 } from "@heroicons/react/24/outline";
 import Button from "@/app/components/shared/button";
 
@@ -19,6 +20,7 @@ interface FormData {
   url: string;
   visaCategories: string[];
   message: string;
+  file: File | null;
 }
 
 interface ImmigrationFormProps {
@@ -50,14 +52,61 @@ export default function ImmigrationForm({ setOnSubmit }: ImmigrationFormProps) {
     country: COUNTRIES[0].id,
     url: '',
     visaCategories: [],
-    message: ''
+    message: '',
+    file: null,
   });
+  const [error, setError] = useState<string | null>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setError("");
+    const file = e.target.files?.[0];
+    if (!file) {
+      setFormData(prev => ({ ...prev, file: null }));
+      return;
+    }
+
+    // Validate file to be less than 5MB
+    if (file.size > 5 * 1024 * 1024) {
+      setError('File size must be less than 5MB');
+      return;
+    }
+
+    // Validate file type. Only PDF and Word documents are allowed.
+    // TODO: Add support for other file types.
+    const allowedTypes = ['application/pdf', 'application/msword'];
+    if (!allowedTypes.includes(file.type)) {
+      setError('Please upload a PDF or Word document');
+      return;
+    }
+
+    setFormData(prev => ({ ...prev, file }));
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      // TODO Add your form submission logic here
-      console.log('Form submitted:', formData);
+      const submitData = new FormData();
+
+      // Append all form fields
+      Object.entries(formData).forEach(([key, value]) => {
+        if (key === 'visaCategories') {
+          submitData.append(key, JSON.stringify(value)); // Convert array to JSON string
+        } else if (key === 'resume' && value instanceof File) {
+          submitData.append(key, value); // Append file directly as binary data
+        } else {
+          submitData.append(key, String(value)); // Append other fields as strings
+        }
+      });
+
+      // TODO: Replace with your API endpoint
+      const response = await fetch('/api/submit-form', {
+        method: 'POST',
+        body: submitData,
+      });
+
+      if (!response.ok) throw new Error('Form submission failed');
+
+
       setOnSubmit(true);
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -206,6 +255,23 @@ export default function ImmigrationForm({ setOnSubmit }: ImmigrationFormProps) {
               <label htmlFor={category.id}>{category.label}</label>
             </div>
           ))}
+        </div>
+
+        {/* File Upload Section */}
+        <PaperClipIcon className="size-24" />
+        <h2 className="text-2xl font-bold">Upload your resume</h2>
+        <div className="w-full">
+          <input type="file" onChange={handleFileChange} />
+          {formData.file && (
+            <p className="text-sm text-green-600">
+              Selected file: {formData.file?.name}
+            </p>
+          )}
+          {error && (
+            <p className="text-sm text-red-600">
+              {error}
+            </p>
+          )}
         </div>
 
         {/* Message Section */}
