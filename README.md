@@ -13,9 +13,18 @@ app/
 │   ├── form/         # Form specific components
 │   ├── shared/       # Reusable shared components
 │   └── home/         # Home page components
-├── data/            # Data layer (Mock Data, data type and queries
+├── lib/             # Utility functions and contexts
+│   └── auth-context.tsx  # Authentication context
+├── data/            # Data layer (Mock Data, data type and queries)
 └── dashboard/       # Dashboard pages
 ```
+#### Key Components for Mock Authentication
+- **AuthContext**: Manages authentication state across the application
+- **Middleware**: Protects dashboard routes from unauthorized access
+- **Login Page**: Handles user authentication
+
+## Protected Routes
+All routes under `/dashboard/*` are protected and require authentication. Unauthorized access attempts will be redirected to the login page.
 
 ### Server vs Client Components
 
