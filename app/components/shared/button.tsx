@@ -16,9 +16,9 @@ export default function Button({
   const baseStyles = 'inline-flex items-center justify-center rounded-md font-semibold transition-colors';
 
   const variants = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:outline-offset-2 focus:outline-2 focus:outline-blue-600',
+    primary: 'bg-black text-white hover:bg-gray-700 focus:outline-offset-2 focus:outline-2 focus:outline-gray-600',
     secondary: 'bg-gray-600 text-white hover:bg-gray-700 focus:outline-offset-2 focus:outline-2 focus:outline-gray-600',
-    outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50 focus:outline-offset-2 focus:outline-2 focus:outline-blue-600'
+    outline: 'border-2 border-black text-black hover:bg-gray-50 focus:outline-offset-2 focus:outline-2 focus:outline-gray-600'
   };
 
   const sizes = {
