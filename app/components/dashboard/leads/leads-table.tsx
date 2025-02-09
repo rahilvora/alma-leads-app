@@ -1,5 +1,6 @@
 import { fetchFilteredLeads } from "@/app/data/leads-queries"
 import { Lead } from "@/app/data/data-defination";
+import { epochToDateTime } from "@/app/utils/date-time-util";
 export default async function LeadsTable({
   query, currentPage,
 }: {
@@ -22,7 +23,7 @@ export default async function LeadsTable({
                     <div className="mb-2 flex items-center">
                       <p>{lead.name}</p>
                     </div>
-                    <p className="text-sm text-gray-500">{lead.submitted_at}</p>
+                    <p className="text-sm text-gray-500">{epochToDateTime(lead.submitted_at)}</p>
                   </div>
                   <div>
                     <div className="mb-2 flex items-center">
@@ -61,7 +62,7 @@ export default async function LeadsTable({
                     <p>{lead.name}</p>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    {lead.submitted_at}
+                    {epochToDateTime(lead.submitted_at)}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                     {lead.status}
