@@ -77,7 +77,7 @@ export default async function LeadsTable({
                     <p>{lead.name}</p>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    {lead.submitted_at}
+                    {epochToDateTime(lead.submitted_at)}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                     {lead.status}
