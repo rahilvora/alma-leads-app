@@ -19,7 +19,7 @@ export default async function Page(props: {
         <h1 className="text-2xl">Leads</h1>
       </div>
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
-        <Search placeholder="Search leads..." />
+        <Search placeholder="Search" />
         <StatusFilterButton />
       </div>
       <Suspense key={query + currentPage}>
